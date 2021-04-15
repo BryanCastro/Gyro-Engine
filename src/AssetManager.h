@@ -4,6 +4,7 @@
 #include <string>
 class TextureManager;
 class EntityManager;
+class SDL_Texture;
 
 class AssetManager{
     public:
