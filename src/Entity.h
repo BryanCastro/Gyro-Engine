@@ -12,9 +12,9 @@ class Entity{
         void Update(float deltaTime);
         void Render();
         void Destroy();
-        bool IsActive() const {return this->isActive;};
+        bool IsActive() const;
     private:
         EntityManager& manager;
         bool isActive;
         std::vector<Component*> components;
-}
+};

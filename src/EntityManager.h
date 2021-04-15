@@ -1,10 +1,12 @@
 #pragma once
-#include "./Entity.h"
-#include "./Component.h"
 #include <vector>
+#include <string>
+class Entity;
+class Component;
 
 class EntityManager{
     public:
+        void ClearData();
         void Update(float deltaTime);
         void Render();
         bool hasNoEntities();
@@ -13,4 +15,4 @@ class EntityManager{
         unsigned int GetEntityCount();
     private:
         std::vector<Entity*> entities;
-}
+};

@@ -1,4 +1,5 @@
-#include "./Entity.h";
+#include "./Entity.h"
+#include "./Component.h"
 
 Entity::Entity(EntityManager& manager): manager(manager){
     this->isActive=true;
@@ -22,4 +23,8 @@ void Entity::Render(){
 }
 void Entity::Destroy(){
     this->isActive = false;
+}
+
+bool Entity::IsActive() const{
+    return this->isActive;
 }
