@@ -4,18 +4,22 @@
 #include <SDL2/SDL_ttf.h>
 
 class Game{
-    private:
-        bool isRunning;
-        SDL_Window *window;
-        SDL_Renderer *renderer;
-        int ticksLastFrame;
     public:
         Game();
         ~Game();
         bool IsRunning() const{return isRunning;};
+        void LoadLevel(int levelNumber);
         void Initialize(int width, int height);
         void ProcessInput();
         void Update();
         void Render();
         void Destroy();
+
+        static SDL_Renderer *renderer;
+        int ticksLastFrame;
+
+    private:
+        bool isRunning;
+        SDL_Window *window;
+        
 };
