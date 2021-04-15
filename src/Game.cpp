@@ -118,4 +118,3 @@ void Game::Destroy(){
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
-
