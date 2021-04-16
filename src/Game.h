@@ -3,6 +3,8 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
+class AssetManager;
+
 class Game{
     public:
         Game();
@@ -16,6 +18,7 @@ class Game{
         void Destroy();
 
         static SDL_Renderer *renderer;
+        static AssetManager *assetManager;
         int ticksLastFrame;
 
     private:

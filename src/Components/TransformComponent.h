@@ -24,15 +24,7 @@ class TransformComponent: public Component{
         }
 
         void Render() override{
-            SDL_Rect transformRectangle ={
-                static_cast<int>(position.y),
-                static_cast<int>(position.x),
-                width,
-                height
-            };
-            SDL_SetRenderDrawColor(Game::renderer, 255,255,255,255);
-            SDL_RenderFillRect(Game::renderer, &transformRectangle);
-
+            
         }
 
         glm::vec2 position;
