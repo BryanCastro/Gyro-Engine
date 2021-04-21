@@ -57,7 +57,9 @@ void Game::LoadLevel(int levelNumber){
     //Add transform component to new entity
     newEntity.AddComponent<TransformComponent>(0,0,20,20,32,32,1);
     newEntity.AddComponent<SpriteComponent>("tank-image");
+
 }
+
 
 void Game::ProcessInput(){
     //create and pool event

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "EntityManager.h"
 #include "Entity.h"
 
@@ -19,6 +20,16 @@ void EntityManager::Update(float deltaTime){
 void EntityManager::Render(){
     for(auto& entity: entities){
         entity->Render();
+    }
+}
+
+//Lists all Entities in Manager
+void EntityManager::ListAllEntities() const{
+    unsigned int i=0;
+    for(auto& entity: entities){
+        std::cout<<"Entity ["<<i<<"] Name: "<<entity->name<<std::endl;
+        entity->ListAllComponents();
+        i++;
     }
 }
 

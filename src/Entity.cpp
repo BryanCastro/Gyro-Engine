@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Entity.h"
 #include "Component.h"
 
@@ -27,4 +28,12 @@ void Entity::Destroy(){
 
 bool Entity::IsActive() const{
     return this->isActive;
+}
+
+void Entity::ListAllComponents() const{
+    std::cout<<"\tComponents:"<<std::endl;
+    for(auto& component: componentTypeMap){
+        std::cout<<"\t\t"<<component.first->name()<<std::endl;
+    }
+    std::cout<<std::endl;
 }

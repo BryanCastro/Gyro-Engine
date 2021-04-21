@@ -15,6 +15,7 @@ class Entity{
         void Render();
         void Destroy();
         bool IsActive() const;
+        void ListAllComponents() const;
 
         /*
         1-template that creates a new component of type T
@@ -41,6 +42,12 @@ class Entity{
         T* GetComponent(){
             return static_cast<T*>(componentTypeMap[&typeid(T)]);
         }
+
+        template <typename T>
+        bool HasComponent() const{
+            return componentTypeMap.count(&typeid(T));
+        }
+
     private:
         EntityManager& manager;
         bool isActive;
