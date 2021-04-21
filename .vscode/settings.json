@@ -59,7 +59,9 @@
         "xutility": "cpp",
         "map": "cpp",
         "xtree": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "atomic": "cpp",
+        "compare": "cpp"
     },
     "C_Cpp.dimInactiveRegions": true
 }
