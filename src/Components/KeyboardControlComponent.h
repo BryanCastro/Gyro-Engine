@@ -1,11 +1,26 @@
 #pragma once
 
+#include <string>
+#include <sstream>
 #include "../Game.h"
 #include "../EntityManager.h"
 #include "TransformComponent.h"
 #include "SpriteComponent.h"
 //#include "../Components/TransformComponent.h"
 //#include "../Components/SpriteComponent.h"
+
+
+//MinGW has problems with to_string function, this namespace 'patch' fixes the issue
+namespace patch
+{
+    template < typename T > std::string to_string( const T& n )
+    {
+        std::ostringstream stm ;
+        stm << n ;
+        return stm.str() ;
+    }
+}
+
 
 class KeyboardControlComponent: public Component{
     public:
@@ -29,7 +44,7 @@ class KeyboardControlComponent: public Component{
             if(key.compare("right")==0) return "1073741903";
             if(key.compare("space")==0) return "32";
 
-            return std::to_string(static_cast<int>(key[0]));
+            return patch::to_string(static_cast<int>(key[0]));
         }
 
         void Initialize() override{
@@ -39,7 +54,7 @@ class KeyboardControlComponent: public Component{
 
         void Update(float deltaTime) override{
             if(Game::event.type==SDL_KEYDOWN){
-                std::string keyCode = std::to_string(Game::event.key.keysym.sym);
+                std::string keyCode = patch::to_string(Game::event.key.keysym.sym);
                 if(keyCode.compare(upKey)==0){
                     transform->velocity.y = -1;
                     transform->velocity.x = 0;
@@ -66,7 +81,7 @@ class KeyboardControlComponent: public Component{
             }
 
             if(Game::event.type==SDL_KEYUP){
-                std::string keyCode = std::to_string(Game::event.key.keysym.sym);
+                std::string keyCode = patch::to_string(Game::event.key.keysym.sym);
                 if(keyCode.compare(upKey)==0){
                     transform->velocity.y = 0;
                 }
