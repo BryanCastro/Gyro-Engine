@@ -7,10 +7,12 @@
 #include "../lib/glm/glm.hpp"
 #include "./Components/TransformComponent.h"
 #include "./Components/SpriteComponent.h"
+#include "./Components/KeyboardControlComponent.h"
 
 EntityManager manager;
 AssetManager* Game::assetManager = new AssetManager(&manager);
 SDL_Renderer* Game::renderer;
+SDL_Event Game::event;
 
 Game::Game(){
     this->isRunning = false;
@@ -60,6 +62,7 @@ void Game::LoadLevel(int levelNumber){
     Entity& chopperEntity(manager.AddEntity("chopper"));
     chopperEntity.AddComponent<TransformComponent>(240,106,0,0,32,32,1);
     chopperEntity.AddComponent<SpriteComponent>("chopper-image", 2, 90, true, false);
+    chopperEntity.AddComponent<KeyboardControlComponent>("up", "right", "down", "left", "space");
 
     Entity& radarEntity(manager.AddEntity("Radar"));
     radarEntity.AddComponent<TransformComponent>(720,15,0,0,64,64,1);
@@ -69,7 +72,6 @@ void Game::LoadLevel(int levelNumber){
 
 void Game::ProcessInput(){
     //create and pool event
-    SDL_Event event;
     SDL_PollEvent(&event);
     //check event type
     switch(event.type){
