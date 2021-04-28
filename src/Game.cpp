@@ -9,6 +9,7 @@
 #include "./Components/TransformComponent.h"
 #include "./Components/SpriteComponent.h"
 #include "./Components/KeyboardControlComponent.h"
+#include "./Components/ColliderComponent.h"
 
 EntityManager manager;
 AssetManager* Game::assetManager = new AssetManager(&manager);
@@ -66,10 +67,12 @@ void Game::LoadLevel(int levelNumber){
     Entity& tankEntity(manager.AddEntity("tank", ENEMY_LAYER));
     tankEntity.AddComponent<TransformComponent>(0,0,20,20,32,32,1);
     tankEntity.AddComponent<SpriteComponent>("tank-image");
+    tankEntity.AddComponent<ColliderComponent>("enemy", 0,0,32,32);
 
     playerEntity.AddComponent<TransformComponent>(240,106,0,0,32,32,1);
     playerEntity.AddComponent<SpriteComponent>("chopper-image", 2, 90, true, false);
     playerEntity.AddComponent<KeyboardControlComponent>("up", "right", "down", "left", "space");
+    playerEntity.AddComponent<ColliderComponent>("player", 240, 106, 32,32);
 
     Entity& radarEntity(manager.AddEntity("Radar", UI_LAYER));
     radarEntity.AddComponent<TransformComponent>(720,15,0,0,64,64,1);
@@ -160,9 +163,9 @@ void Game::HandleCameraMovement(){
 }
 
 void Game::CheckCollisions(){
-    std::string collisionTagType =manager.CheckEntityCollisions(player);
+    std::string collisionTagType =manager.CheckEntityCollisions(playerEntity);
 
-    if(collisionTagType.compare("enemy")){
+    if(collisionTagType.compare("enemy")==0){
         //TODO:
         isRunning = false;
     }
