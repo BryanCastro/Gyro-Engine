@@ -34,6 +34,17 @@ class ColliderComponent: public Component{
             destRect.y = collider.y - Game::camera.y;
         }
 
+        void Render() override{
+            
+            if(Game::debugMode){
+                //set render color for debug rectangle
+                SDL_SetRenderDrawColor(Game::renderer, 255,0,0,255);
+                //Draw collider rectangles
+                SDL_RenderDrawRect(Game::renderer, &destRect);
+            }
+
+        }
+
         std::string colliderTag;
         SDL_Rect collider;
         SDL_Rect srcRect;

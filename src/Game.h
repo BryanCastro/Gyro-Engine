@@ -17,12 +17,15 @@ class Game{
         void Render();
         void HandleCameraMovement();
         void CheckCollisions();
+        void ProcessNextLevel(int levelNumber);
+        void ProcessGameOver();
         void Destroy();
 
         static SDL_Renderer *renderer;
         static AssetManager *assetManager;
         static SDL_Event event;
         static SDL_Rect camera;
+        static bool debugMode;
         int ticksLastFrame;
 
     private:
