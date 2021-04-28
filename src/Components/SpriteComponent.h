@@ -77,8 +77,8 @@ class SpriteComponent: public Component{
             }
             srcRect.y = animationIndex * transform->height;
 
-            destRect.x = static_cast<int>(transform->position.x);
-            destRect.y = static_cast<int>(transform->position.y);
+            destRect.x = static_cast<int>(transform->position.x)-(isFixed ? 0: Game::camera.x);
+            destRect.y = static_cast<int>(transform->position.y)-(isFixed ? 0: Game::camera.y);
             destRect.w = static_cast<int>(transform->width * transform->scale);
             destRect.h = static_cast<int>(transform->height * transform->scale);
         };

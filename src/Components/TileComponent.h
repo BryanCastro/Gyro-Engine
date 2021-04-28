@@ -37,7 +37,8 @@ class TileComponent: public Component{
         //Here is where we take care of the tile positions
         //based on the camera position
         void Update(float deltaTime) override{
-            
+            destRect.x = position.x - Game::camera.x;
+            destRect.y = position.y - Game::camera.y;
         }
 
         //render the texture to the screen
