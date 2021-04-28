@@ -10,6 +10,7 @@
 #include "./Components/SpriteComponent.h"
 #include "./Components/KeyboardControlComponent.h"
 #include "./Components/ColliderComponent.h"
+#include "./Components/TextLabelComponent.h"
 
 EntityManager manager;
 AssetManager* Game::assetManager = new AssetManager(&manager);
@@ -32,6 +33,9 @@ void Game::Initialize(int width, int height){
     if(SDL_Init(SDL_INIT_EVERYTHING)!=0){
         std::cerr<<"Error Initializing SDL"<<std::endl;
         return;
+    }
+    if(TTF_Init()!=0){
+        std::cerr<<"Error Initializing SDL TTF"<<std::endl;
     }
     //Attempt to create window
     window = SDL_CreateWindow("Gyro Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,width, height,SDL_WINDOW_BORDERLESS);
@@ -62,6 +66,7 @@ void Game::LoadLevel(int levelNumber){
     assetManager->AddTexture("radar-image", std::string("./assets/images/radar.png").c_str());
     assetManager->AddTexture("jungle-tiletexture", std::string("./assets/tilemaps/jungle.png").c_str());
     assetManager->AddTexture("heliport-image", std::string("./assets/images/heliport.png").c_str());
+    assetManager->AddFont("charriot-font", std::string("./assets/fonts/charriot.ttf").c_str(), 14);
 
     map = new Map("jungle-tiletexture", 2, 32);
     map->LoadMap("./assets/tilemaps/jungle.map",25,20);
@@ -86,6 +91,9 @@ void Game::LoadLevel(int levelNumber){
     Entity& radarEntity(manager.AddEntity("Radar", UI_LAYER));
     radarEntity.AddComponent<TransformComponent>(720,15,0,0,64,64,1);
     radarEntity.AddComponent<SpriteComponent>("radar-image", 8,150,false,true);
+
+    Entity& labelLevelName(manager.AddEntity("LabelLevelName", UI_LAYER));
+    labelLevelName.AddComponent<TextLabelComponent>(10,10, "First Level...", "charriot-font",GREEN_COLOR);
 }
 
 
