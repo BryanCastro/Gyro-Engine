@@ -122,6 +122,9 @@ void Game::Update(){
 
     //moves camera
     HandleCameraMovement();
+
+    //check collisions
+    CheckCollisions();
 }
 
 void Game::Render(){
@@ -154,6 +157,15 @@ void Game::HandleCameraMovement(){
     camera.y = camera.y<0 ? 0 : camera.y;
     camera.x = camera.x > camera.w ? camera.w: camera.x;
     camera.y = camera.y > camera.h ? camera.h: camera.y;
+}
+
+void Game::CheckCollisions(){
+    std::string collisionTagType =manager.CheckEntityCollisions(player);
+
+    if(collisionTagType.compare("enemy")){
+        //TODO:
+        isRunning = false;
+    }
 }
 
 void Game::Destroy(){
