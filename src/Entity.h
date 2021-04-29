@@ -1,14 +1,22 @@
-#pragma once
+#ifndef ENTITY_H
+#define ENTITY_H
+
 #include <vector>
 #include <string>
 #include <map>
 #include "./Constants.h"
-//#include "./Component.h"
+#include "./EntityManager.h"
+#include "./Component.h"
 
 class EntityManager;
 class Component;
 
-class Entity{
+class Entity {
+    private:
+        EntityManager& manager;
+        bool isActive;
+        std::vector<Component*> components;
+        std::map<const std::type_info*, Component*> componentTypeMap;
     public:
         std::string name;
         LayerType layer;
@@ -20,15 +28,8 @@ class Entity{
         bool IsActive() const;
         void ListAllComponents() const;
 
-        /*
-        1-template that creates a new component of type T
-        2-sets owner to this entity
-        3-adds it to component vector
-        4-add component to componentTypeMap with its type as the key
-        4-then initializes the component
-        5-returns a reference to component*/
         template <typename T, typename... TArgs>
-        T& AddComponent(TArgs&&... args){
+        T& AddComponent(TArgs&&... args) {
             T* newComponent(new T(std::forward<TArgs>(args)...));
             newComponent->owner = this;
             components.emplace_back(newComponent);
@@ -37,23 +38,15 @@ class Entity{
             return *newComponent;
         }
 
-        /*get the component by using its type as key to access it
-        if we used the vector to access this component directly, we would have to iterate
-        through the whole vector completely which is not ideal
-        */
         template <typename T>
-        T* GetComponent(){
-            return static_cast<T*>(componentTypeMap[&typeid(T)]);
-        }
-
-        template <typename T>
-        bool HasComponent() const{
+        bool HasComponent() const {
             return componentTypeMap.count(&typeid(T));
         }
 
-    private:
-        EntityManager& manager;
-        bool isActive;
-        std::vector<Component*> components;
-        std::map<const std::type_info*, Component*> componentTypeMap;
+        template <typename T>
+        T* GetComponent() {
+            return static_cast<T*>(componentTypeMap[&typeid(T)]);
+        }
 };
+
+#endif

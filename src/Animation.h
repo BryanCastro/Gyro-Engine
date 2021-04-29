@@ -1,13 +1,13 @@
-#pragma once
+#ifndef ANIMATION_H
+#define ANIMATION_H
 
-class Animation{
+class Animation {
     public:
-        Animation();
-        Animation(unsigned int index, unsigned int numFrames, unsigned int animationSpeed);
-    
         unsigned int index;
         unsigned int numFrames;
         unsigned int animationSpeed;
-
-    private:
+        Animation();
+        Animation(int index, int numFrames, int animationSpeed);
 };
+
+#endif

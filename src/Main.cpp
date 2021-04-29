@@ -1,20 +1,19 @@
-
+#include <iostream>
 #include "./Constants.h"
 #include "./Game.h"
 
-int main(int argc, char *args[]){
-    //TODO:
+int main(int argc, char *args[]) {
     Game game;
 
-    game.Initialize(WINDOW_WIDTH,WINDOW_HEIGHT);
+    game.Initialize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-    while(game.IsRunning()){
+    while (game.IsRunning()) {
         game.ProcessInput();
         game.Update();
         game.Render();
     }
 
-   game.Destroy();
+    game.Destroy();
 
     return 0;
 }
