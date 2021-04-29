@@ -76,6 +76,15 @@ std::vector<Entity*> EntityManager::getEntitiesByLayer(LayerType layer) const{
     return selectedEntities;
 }
 
+Entity* EntityManager::GetEntityByName(std::string entityName) const {
+    for (auto* entity: entities) {
+        if (entity->name.compare(entityName) == 0) {
+            return entity;
+        }
+    }
+    return NULL;
+}
+
 //return entity count
 unsigned int EntityManager::GetEntityCount(){
     return entities.size();
