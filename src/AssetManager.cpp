@@ -18,6 +18,10 @@ void AssetManager::AddFont(std::string fontId, const char* filePath, int fontSiz
     fonts.emplace(fontId, FontManager::LoadFont(filePath, fontSize));
 }
 
+void AssetManager::AddSound(std::string soundId, const char* filePath){
+    sounds.emplace(soundId, AudioManager::LoadSound(filePath));
+}
+
 SDL_Texture* AssetManager::GetTexture(std::string textureId) {
     return textures[textureId];
 }
@@ -25,3 +29,9 @@ SDL_Texture* AssetManager::GetTexture(std::string textureId) {
 TTF_Font* AssetManager::GetFont(std::string fontId) {
     return fonts[fontId];
 }
+
+Mix_Chunk* AssetManager::GetSound(std::string soundId){
+    return sounds[soundId];
+}
+
+

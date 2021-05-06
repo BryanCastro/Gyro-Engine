@@ -96,6 +96,11 @@ void Game::LoadLevel(int levelNumber) {
                 int fontSize = asset["fontSize"];
                 assetManager->AddFont(assetId, assetFile.c_str(), fontSize);
             }
+            if(assetType.compare("sound")==0){
+                std::string assetId = asset["id"];
+                std::string assetFile = asset["file"];
+                assetManager->AddSound(assetId, assetFile.c_str());
+            }
         }
         assetIndex++;
     }
