@@ -4,6 +4,7 @@
 #include "./AssetManager.h"
 #include "./Map.h"
 #include "./Components/TransformComponent.h"
+#include "./Components/SoundComponent.h"
 #include "./Components/SpriteComponent.h"
 #include "./Components/ColliderComponent.h"
 #include "./Components/KeyboardControlComponent.h"
@@ -240,6 +241,13 @@ void Game::LoadLevel(int levelNumber) {
                     projectileHeight
                 );
             }
+
+             // Add projectile emitter component
+            sol::optional<sol::table> existsSoundComponent = entity["components"]["sound"];
+             if (existsSoundComponent != sol::nullopt) {
+                 std::string test=entity["components"]["sound"]["soundAssetId"];
+                newEntity.AddComponent<SoundComponent>(test);
+             }
         }
         entityIndex++;
     }

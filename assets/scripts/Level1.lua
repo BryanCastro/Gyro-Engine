@@ -41,7 +41,7 @@ Level1 = {
         [30] = { type="texture", id = "heliport-texture", file = "./assets/images/heliport.png" },
         [31] = { type="texture", id = "bullet-friendly-texture", file = "./assets/images/bullet-friendly.png" },
         [32] = { type="texture", id = "radar-texture", file = "./assets/images/radar.png" },
-        [33] = { type="sound", id = "blades-sound", file = "./assets/sounds/helicopter.wav" },
+        [33] = { type="sound", id = "helicopter-sound", file = "./assets/sounds/food.wav" },
         [34] = { type="font", id = "charriot-font", file = "./assets/fonts/charriot.ttf", fontSize = 14 }
     },
 
@@ -98,6 +98,9 @@ Level1 = {
                         right = "d",
                         shoot = "space"
                     }
+                },
+                sound ={
+                    soundAssetId = "helicopter-sound"
                 }
             }
         },
